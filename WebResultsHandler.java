@@ -4,12 +4,14 @@ import java.io.*;
 public class WebResultsHandler {
 	double precision;
 	PrintWriter transcript;
+	DocParser DocResults;
 	
 
 	public WebResultsHandler(String results, double precision, PrintWriter transcript) {
 		this.precision = precision;
 		this.transcript = transcript;
-		parseResults(results);
+		DocResults = new DocParser();
+		DocResults.getEntries(results);
 	}
 
 
@@ -25,9 +27,6 @@ public class WebResultsHandler {
 	}
 
 
-	private void parseResults(String results) {
-		//parse results from web into a list of WebResult objects
-	}
 
 	public boolean relevanceFeedback() {
 		//iterate over all results and record each relevance based on user feedback
@@ -35,23 +34,25 @@ public class WebResultsHandler {
 		int numRelevant = 0;
 		Scanner in = new Scanner(System.in);
 		int i = 0;
-		for(WebResult result : results) {
+		for(WebResult result : DocResults.entryList) {
 			println("Result "+i);
 			println("[");
 			println(" URL:  "+result.url);
 			println(" Title:  "+result.title);
-			println(" Summary:  "+result.summary);
+			println(" Summary:  "+result.description);
 			println("]\n");
 			
 			while(true) {
 				print("Relevant (Y/N)?");
-				String feedback = in.nextLine()
+				String feedback = in.nextLine();
 				transcript.println(feedback);
 				if(feedback.equalsIgnoreCase("N")) {
 					result.isRelevant(false);
+					break;
 				}else if(feedback.equalsIgnoreCase("Y")) {
 					result.isRelevant(true);
 					numRelevant++;
+					break;
 				}else {
 					println("Please enter only 'Y' or 'N'");
 				}	

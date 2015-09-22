@@ -6,6 +6,12 @@ public class WebResult {
 	String url;
 	private boolean isRelevant;
 
+	public WebResult(){
+		this.title = null;
+		this.description = null;
+		this.url = null;
+	}
+
 	public WebResult(String title, String description, String url) {
 		this.title = title;
 		this.description = description;
