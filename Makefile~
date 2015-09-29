@@ -1,0 +1,4 @@
+all: 
+	javac -d . -classpath ./lib/*:.:class/* src/*.java
+clean:
+	rm -f class/*.class
