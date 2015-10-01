@@ -47,7 +47,7 @@ public class App {
 
 	
 	public static void main(String[] args) throws IOException {
-    if(args.length != 2) {
+    if(args.length < 2) {
       System.out.println("Include usage");
       return;
     }
@@ -68,7 +68,14 @@ public class App {
 
 		
 		PrintWriter transcript = new PrintWriter(new FileOutputStream(transcriptFile, false));
-		String query = args[1];
+		int i = 1;
+		String query = "";
+		for(;i<args.length-1; i++) {
+		  query += args[i]+" ";
+		}
+		query += args[i];
+    System.out.println("First query: "+query);
+    
 		String url = createUrl(query);	
 		String results = getResults(url);
 

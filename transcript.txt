@@ -1,0 +1,320 @@
+Result 0
+[
+ URL:  http://en.wikipedia.org/wiki/Taj_Mahal
+ Title:  Taj Mahal - Wikipedia, the free encyclopedia
+ Summary:  The Taj Mahal is a white marble mausoleum located on the southern bank of the Yamuna River in the Indian city of Agra. It was commissioned in 1632 by the Mughal ...
+]
+
+Relevant (Y/N)?n
+Result 1
+[
+ URL:  http://tajmahal.gov.in/
+ Title:  Welcome To Official WebSite of Taj Mahal-U.P.Tourism
+ Summary:  Official website by Department of Tourism, Government of Uttar Pradesh. Details about Taj Mahal, ticketing, tours, and tourist information.
+]
+
+Relevant (Y/N)?n
+Result 2
+[
+ URL:  http://www.history.com/topics/taj-mahal
+ Title:  The Taj Mahal - Facts & Summary - HISTORY.com
+ Summary:  Find out more about the history of The Taj Mahal, including videos, interesting articles, pictures, historical features and more. Get all the facts on HISTORY.com
+]
+
+Relevant (Y/N)?n
+Result 3
+[
+ URL:  http://www.trumptaj.com/
+ Title:  Atlantic City New Jersey Casino Hotels | Trump Taj Mahal ...
+ Summary:  For five star Atlantic City Casino hotels, Trump Taj Mahal Casino Hotel offers restaurants, nightlife and a casino floor you can't resist. Explore our Atlantic City ...
+]
+
+Relevant (Y/N)?n
+Result 4
+[
+ URL:  http://www.tajmahal.com/
+ Title:  Taj Mahal India
+ Summary:  Taj Mahal, Taj Mahal history, taj mahal location, pictures, information, taj mahal tours, tickets and packages. Taj Mahal India
+]
+
+Relevant (Y/N)?n
+Result 5
+[
+ URL:  http://www.britannica.com/topic/Taj-Mahal
+ Title:  Taj Mahal | mausoleum, Agra, India | Britannica.com
+ Summary:  Mausoleum complex in Agra, western Uttar Pradesh state, northern India. It is situated in the eastern part of the city on the southern (right) bank of the Yamuna ...
+]
+
+Relevant (Y/N)?n
+Result 6
+[
+ URL:  http://www.tajblues.com/
+ Title:  An International Treasure - Taj Mahal
+ Summary:  Official site includes news, tour schedule, discography, audio/video and pictures.
+]
+
+Relevant (Y/N)?n
+Result 7
+[
+ URL:  http://www.allmusic.com/artist/taj-mahal-mn0000790604
+ Title:  Taj Mahal | Biography, Albums, & Streaming Radio | AllMusic
+ Summary:  Find Taj Mahal bio, music, credits, awards, & streaming radio on AllMusic - A guitarist and singer/songwriter who took an…
+]
+
+Relevant (Y/N)?y
+Result 8
+[
+ URL:  http://www.last.fm/music/Taj+Mahal
+ Title:  Taj Mahal — Free listening, videos, concerts, stats and ...
+ Summary:  Taj Mahal (born Henry Saint Clair Fredericks in New York City on May 17, 1942) is an American Grammy Award-winning blues musician who incorporates elements of world ...
+]
+
+Relevant (Y/N)?y
+Result 9
+[
+ URL:  http://en.wikipedia.org/wiki/Taj_Mahal_(musician)
+ Title:  Taj Mahal (musician) - Wikipedia, the free encyclopedia
+ Summary:  Henry Saint Clair Fredericks (born May 17, 1942), who uses the stage name Taj Mahal, is an American blues musician. He often incorporates elements of world music into ...
+]
+
+Relevant (Y/N)?y
+Result 0
+[
+ URL:  http://en.wikipedia.org/wiki/Henry_Saint_Clair_Fredericks
+ Title:  Taj Mahal (musician) - Wikipedia, the free encyclopedia
+ Summary:  Henry Saint Clair Fredericks (born May 17, 1942), who uses the stage name Taj Mahal, is an American blues musician. He often incorporates elements of world music into ...
+]
+
+Relevant (Y/N)?y
+Result 1
+[
+ URL:  http://www.metrolyrics.com/john-henry-lyrics-taj-mahal.html
+ Title:  Taj Mahal - John Henry Lyrics | MetroLyrics
+ Summary:  "John Henry" is track #35 on the album The Essential Taj Mahal. (No other information is available for this lyric - would you like to add something today?)
+]
+
+Relevant (Y/N)?n
+Result 2
+[
+ URL:  http://en.wikipedia.org/wiki/Taj_Mahal
+ Title:  Taj Mahal - Wikipedia, the free encyclopedia
+ Summary:  The Taj Mahal is a white marble mausoleum located on the southern bank of the Yamuna River in the Indian city of Agra. It was commissioned in 1632 by the Mughal ...
+]
+
+Relevant (Y/N)?n
+Result 3
+[
+ URL:  http://www.blackpast.org/aah/mahal-taj-1942
+ Title:  Mahal, Taj (Henry St. Claire Fredericks) (1942- ) | The ...
+ Summary:  Blues, jazz, and folk musician Taj Mahal was born Henry St. Claire Fredericks in Harlem, New York on May 17, 1942. He was raised in Springfield, Massachusetts by ...
+]
+
+Relevant (Y/N)?y
+Result 4
+[
+ URL:  http://www.tabondant.com/eng/tabs/taj-mahal
+ Title:  Taj Mahal Tabs
+ Summary:  Status: checked . Taj Mahal (born Henry Saint Clair Fredericks in New York City on May 17, 1942) is an American Grammy Award-winning blues musician who ...
+]
+
+Relevant (Y/N)?y
+Result 5
+[
+ URL:  http://www.tajblues.com/biography/
+ Title:  Biography - Taj Mahal
+ Summary:  4148 Biography - Taj Mahal page page-id-4148 page-template page-template-tpl ... Henry Sr. had an extensive record collection and a shortwave radio that brought ...
+]
+
+Relevant (Y/N)?y
+Result 6
+[
+ URL:  http://www.allmusic.com/artist/taj-mahal-mn0000790604
+ Title:  Taj Mahal | Biography, Albums, & Streaming Radio | AllMusic
+ Summary:  Find Taj Mahal bio, music, credits, awards, & streaming radio on AllMusic - A guitarist and singer/songwriter who took an…
+]
+
+Relevant (Y/N)?y
+Result 7
+[
+ URL:  http://www.youtube.com/watch?v=y2hPKu2CGuc
+ Title:  Taj Mahal - John Henry - YouTube
+ Summary:  Taj Mahal Trio at the Boulder Theater May 18, 2012.
+]
+
+Relevant (Y/N)?y
+Result 8
+[
+ URL:  https://in.pinterest.com/pin/532198880935670788
+ Title:  Taj Mahal | Travel | Pinterest
+ Summary:  Taj Mahal, India- The most surreal place I have been in the middle of the craziness of Japur full of dirt, noise, poverty and heartbreakit is the most peaceful and ...
+]
+
+Relevant (Y/N)?n
+Result 9
+[
+ URL:  http://www.tajblues.com/
+ Title:  An International Treasure - Taj Mahal
+ Summary:  Taj Mahal special guest at Lyon Art & Friends Art Exhibit in Mancos, CO. Posted Sep. 13, 2015. Taj Mahal is special guest at Lyon Art and Friends Oct. 3rd- Nov. 28th 2015
+]
+
+Relevant (Y/N)?y
+Result 0
+[
+ URL:  http://en.wikipedia.org/wiki/Taj_Mahal_(musician)
+ Title:  Taj Mahal (musician) - Wikipedia, the free encyclopedia
+ Summary:  ... who uses the stage name Taj Mahal, ... Born Henry Saint Clair Fredericks, Jr. on May 17, 1942 in Harlem, ... Art (2002). . San Francisco, CA ...
+]
+
+Relevant (Y/N)?y
+Result 1
+[
+ URL:  http://www.tajblues.com/
+ Title:  An International Treasure - Taj Mahal
+ Summary:  Taj Mahal special guest at Lyon Art & Friends Art Exhibit in Mancos, CO. ... HAPPY BIRTHDAY TAJ!!! Posted May. 17, 2015. Taj Mahal Trio May Tour Dates Canceled.
+]
+
+Relevant (Y/N)?y
+Result 2
+[
+ URL:  http://www.allmusic.com/artist/taj-mahal-mn0000790604
+ Title:  Taj Mahal | Biography, Albums, & Streaming Radio | AllMusic
+ Summary:  Find Taj Mahal bio, music, credits, ... May 17, 1942 in New York, NY ... Henry Saint Clair Fredericks.
+]
+
+Relevant (Y/N)?y
+Result 3
+[
+ URL:  http://www.discogs.com/artist/15158-Taj-Mahal
+ Title:  Taj Mahal Discography at Discogs
+ Summary:  Complete your Taj Mahal record collection. Discover Taj Mahal's full discography. ... Henry St. Claire Fredericks. ... Taj Mahal: Taj (Album) 10 versions:
+]
+
+Relevant (Y/N)?y
+Result 4
+[
+ URL:  http://islamicart.com/library/empires/india/taj_mahal.html
+ Title:  The Taj Mahal - Islamic art
+ Summary:  Author Christine Moorcroft writes in The Taj Mahal (1998) that Shah Jahan may have ... art, there are in the Taj Mahal only ... of the Taj Mahal was ...
+]
+
+Relevant (Y/N)?n
+Result 5
+[
+ URL:  http://www.biography.com/people/taj-mahal-40448
+ Title:  Taj Mahal - Guitarist, Songwriter, Singer - Biography.com
+ Summary:  ... Grammy Award-winning blues/world music artist Taj Mahal at ... Taj Mahal was born in Harlem, New York, on May ... artist Taj Mahal was born Henry Saint ...
+]
+
+Relevant (Y/N)?y
+Result 6
+[
+ URL:  http://en.wikipedia.org/wiki/Taj_Mahal
+ Title:  Taj Mahal - Wikipedia, the free encyclopedia
+ Summary:  ... Mahal is regarded by many as the best example of Mughal architecture and is widely recognized as "the jewel of Muslim art ... may have been designed ... Taj Mahal ...
+]
+
+Relevant (Y/N)?n
+Result 7
+[
+ URL:  http://www.facebook.com/tajmahal
+ Title:  Taj Mahal
+ Summary:  Taj Mahal. 148,940 likes · 3,547 talking about this. Come visit Taj's channel on YOUTUBE!http ... Taj Mahal is excited to be a part of Lyon Art ...
+]
+
+Relevant (Y/N)?n
+Result 8
+[
+ URL:  http://wn.com/Taj_Mahal_You
+ Title:  Taj Mahal You
+ Summary:  Taj Mahal - You Don't Miss Your Water, Taj Mahal - The Natch'l Blues (full album), THE NATCH`L BLUES (Full Album) - TAJ MAHAL - 1969., ...
+]
+
+Relevant (Y/N)?n
+Result 9
+[
+ URL:  http://www.wansfilm.com/stream/lego-taj-mahal-10189-build-animation.html
+ Title:  Lego taj mahal 10189 build animation Movie Streaming [Oct ...
+ Summary:  Stream movie Lego taj mahal 10189 build ... Publisher: TheCreativeBrickCoUk | Date: May ... [2011] → The Race Begins (2006) → I Vitelloni 1953 → Henry & Me ...
+]
+
+Relevant (Y/N)?n
+Result 0
+[
+ URL:  http://en.wikipedia.org/wiki/Taj_Mahal_(musician)
+ Title:  Taj Mahal (musician) - Wikipedia, the free encyclopedia
+ Summary:  ... who uses the stage name Taj Mahal, ... Born Henry Saint Clair Fredericks, Jr. on May 17, 1942 in Harlem, ... Art (2002). . San Francisco, CA ...
+]
+
+Relevant (Y/N)?y
+Result 1
+[
+ URL:  https://www.pinterest.com/pin/481955597601412518/
+ Title:  TAJ MAHAL....born...Henry Saint Clair Fredericks... in ...
+ Summary:  TAJ MAHAL....born...Henry Saint Clair Fredericks... in Queens, New York on 5/17/1942.....Grammy Award winning blues musician ...a real legend.
+]
+
+Relevant (Y/N)?y
+Result 2
+[
+ URL:  http://www.imdb.com/name/nm0536737/
+ Title:  Taj Mahal - IMDb
+ Summary:  Taj Mahal, Soundtrack: Phenomenon. Taj Mahal was born on May 17, 1942 in New York City, New York, USA as Henry Saint Clair Fredericks. IMDb Movies ...
+]
+
+Relevant (Y/N)?y
+Result 3
+[
+ URL:  http://www.allmusic.com/artist/taj-mahal-mn0000790604
+ Title:  Taj Mahal | Biography, Albums, & Streaming Radio | AllMusic
+ Summary:  Find Taj Mahal bio, music, credits, ... May 17, 1942 in New York, NY ... Henry Saint Clair Fredericks.
+]
+
+Relevant (Y/N)?y
+Result 4
+[
+ URL:  http://www.mtv.com/artists/taj-mahal/
+ Title:  Taj Mahal | New Music And Songs | MTV
+ Summary:  Taj Mahal new music, ... Taj Mahal was born Henry St. Clair Fredericks in New York on May 17, ... Mahal returned in 1987 with Taj, ...
+]
+
+Relevant (Y/N)?y
+Result 5
+[
+ URL:  http://www.tajblues.com/
+ Title:  An International Treasure - Taj Mahal
+ Summary:  Taj Mahal special guest at Lyon Art & Friends Art Exhibit in Mancos, CO. ... HAPPY BIRTHDAY TAJ!!! Posted May. 17, 2015. Taj Mahal Trio May Tour Dates Canceled.
+]
+
+Relevant (Y/N)?y
+Result 6
+[
+ URL:  http://www.discogs.com/artist/15158-Taj-Mahal
+ Title:  Taj Mahal Discography at Discogs
+ Summary:  Complete your Taj Mahal record collection. Discover Taj Mahal's full discography. ... Henry St. Claire Fredericks. ... Taj Mahal: Taj (Album) 10 versions:
+]
+
+Relevant (Y/N)?y
+Result 7
+[
+ URL:  http://rapidsharemovie.info/fr/movie/358403/Taj+Mahal-2015
+ Title:  watch Taj Mahal (2015) Full HD movie UsersCloud ganool
+ Summary:  ... Soundtrack: Phenomenon, Taj Mahal was born on May 17, ... USA as Henry Saint Clair Fredericks, Taj Mahal, ... Art: Pascal Leguellec:
+]
+
+Relevant (Y/N)?y
+Result 8
+[
+ URL:  http://wn.com/Taj_Mahal_You
+ Title:  Taj Mahal You
+ Summary:  Taj Mahal - You Don't Miss Your Water, Taj Mahal - The Natch'l Blues (full album), THE NATCH`L BLUES (Full Album) - TAJ MAHAL - 1969., ...
+]
+
+Relevant (Y/N)?n
+Result 9
+[
+ URL:  http://www.bluesharp.ca/legends/tmahal.html
+ Title:  The BluesHarp Page:Legends:Taj Mahal
+ Summary:  Taj Mahal. Henry St. Clair Fredericks: Hair ... The online version of the All Music Guides may be found at www.allmusic.com: New! Click the Find It button ...
+]
+
+Relevant (Y/N)?y

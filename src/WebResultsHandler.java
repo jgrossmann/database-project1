@@ -174,6 +174,9 @@ public class WebResultsHandler {
 	  
 	  WordWeight[] topwords = new WordWeight[2];
 	  for(Map.Entry<String, Double> entry : vector.entrySet()) {
+	    if(entry.getValue() > .2) {
+	      System.out.println(entry.getKey() + " "+ entry.getValue());
+	    }
 	    if(topwords[0] == null) {
 	      topwords[0] = new WordWeight(entry.getKey(), entry.getValue());
 	    }else if(topwords[1] == null) {

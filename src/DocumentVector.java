@@ -21,12 +21,12 @@ public class DocumentVector {
 	}
 	
 	private void getDocumentTermFrequency(String doc){
-		StringTokenizer st = new StringTokenizer(doc, " ,.?\n");
+		StringTokenizer st = new StringTokenizer(doc, " \",.?\n");
 		while(st.hasMoreElements())
 		{
 			wordCount++;
 			String term = (String) st.nextElement();
-			if(!queryWords.contains(term.toLowerCase())) {
+			if(!queryWords.contains(term.toLowerCase()) && term.matches("[A-Za-z0-9]+")) {
 			  
 			  if(termFreq.containsKey(term))
 			  {
