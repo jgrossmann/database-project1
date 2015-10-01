@@ -5,7 +5,7 @@ public class WebResultsHandler {
 	double precision;
 	PrintWriter transcript;
 	DocParser DocResults;
-	
+	VectorList docVectors;	
 
 	public WebResultsHandler(String results, double precision, PrintWriter transcript) {
 		this.precision = precision;
@@ -65,6 +65,16 @@ public class WebResultsHandler {
 
 	public String formNewQuery() {
 		//forms new query based on which webresults are relevant and other metrics
+		List<DocumentVector> ld = new ArrayList<DocumentVector>();
+		for(WebResult wr : DocResults.entryList)
+		{
+			DocumentVector dv = new DocumentVector(wr.description);
+			dv.isRelevent = wr.isRelevant();
+			ld.add(dv);
+		}
+		docVectors = new VectorList(ld);
+		docVectors.getDocumentFrequency();
+		docVectors.getTFIDF();
 		return null;
 	}
 
