@@ -1,12 +1,13 @@
 import java.util.*;
 import java.io.*;
+import java.util.Map.Entry;
 
 public class WebResultsHandler {
 	double precision;
 	PrintWriter transcript;
 	DocParser DocResults;
 	List<String> queryWords;
-	
+	VectorList docVectors;	
 
 	public WebResultsHandler(String results, double precision, PrintWriter transcript, List<String> queryWords) {
 		this.precision = precision;
@@ -102,14 +103,14 @@ public class WebResultsHandler {
 	
 	public HashMap<String, Double> rocchio(List<DocumentVector> docVectors) {
 	  //Double ALPHA = 1.0;
-	  Double BETA = .85;
-	  Double GAMMA = .15;
+	  Double BETA = .75;
+	  Double GAMMA = .25;
 	  int numRelevant = 0, numIrrelevant = 0;
 	  
 	  HashMap<String, Double> queryVector = new HashMap<String, Double>();
 	  
-	  List<HashMap<String, Double>> relevantVectors = new ArrayList<HashMap<String, Double>>;
-	  List<HashMap<String, Double>> irrelevantVectors = new ArrayList<HashMap<String, Double>>;
+	  List<HashMap<String, Double>> relevantVectors = new ArrayList<HashMap<String, Double>>();
+	  List<HashMap<String, Double>> irrelevantVectors = new ArrayList<HashMap<String, Double>>();
 	  //find num relevant/irrelevant
 	  for(DocumentVector vector : docVectors) {
 	    if(vector.isRelevant) {
@@ -162,7 +163,7 @@ public class WebResultsHandler {
 	}
 	
 	public String[] getTopTwoWords(HashMap<String, Double> vector) {
-	  public class WordWeight {
+	  class WordWeight {
 	    Double weight;
 	    String word;
 	    public WordWeight(String word, Double weight) {
@@ -174,47 +175,57 @@ public class WebResultsHandler {
 	  WordWeight[] topwords = new WordWeight[2];
 	  for(Map.Entry<String, Double> entry : vector.entrySet()) {
 	    if(topwords[0] == null) {
-	      topwords[0] = new WordWeight(entry.key, entry.value);
+	      topwords[0] = new WordWeight(entry.getKey(), entry.getValue());
 	    }else if(topwords[1] == null) {
-	      topwords[1] = new WordWeight(entry.key, entry.value);
+	      topwords[1] = new WordWeight(entry.getKey(), entry.getValue());
 	    }else {
-	      if(entry.value > topwords[1]) {
-	        if(entry.value > topwords[0]) {
+	      if(entry.getValue() > topwords[1].weight) {
+	        if(entry.getValue() > topwords[0].weight) {
 	          topwords[1] = topwords[0];
-	          topwords[0] = new WordWeight(entry.key, entry.value);
+	          topwords[0] = new WordWeight(entry.getKey(), entry.getValue());
 	        }else {
-	          topwords[1] = new WordWeight(entry.key, entry.value);
+	          topwords[1] = new WordWeight(entry.getKey(), entry.getValue());
 	        }
 	      }
 	    }
 	  }
 	  
 	  String[] words = {topwords[0].word, topwords[1].word};
+	  System.out.println(topwords[0].word+" "+topwords[0].weight);
+	  System.out.println(topwords[1].word+" "+topwords[1].weight);
+	  
 	  return words;
 	}
 
 	public String formNewQuery() {
 	  //List<DocumentVector> docVectors = ...
-	  HashMap<String, Double> optimizedQueryVector = rocchio(docVectors);
-	  List<String> newWords = new ArrayList<String>(getTopTwoWords(optimizedQueryVector));
-	  queryWords.addAll(newWords);
+	  
+	  
+		List<DocumentVector> ld = new ArrayList<DocumentVector>();
+		for(WebResult wr : DocResults.entryList)
+		{
+			DocumentVector dv = new DocumentVector(wr.description, queryWords);
+			dv.isRelevant = wr.isRelevant();
+			ld.add(dv);
+		}
+		docVectors = new VectorList(ld);
+		docVectors.getDocumentFrequency();
+		docVectors.getTFIDF();
+
+    HashMap<String, Double> optimizedQueryVector = rocchio(docVectors.list);
+	  for(String newWord : getTopTwoWords(optimizedQueryVector)) {
+	    queryWords.add(newWord);
+	  }
+	  
 	  String query = "";
-	  for(int i = 0; i<queryWords.size - 1; i++) {
-	    String word = queryWords[i];
+	  int i = 0;
+	  for(; i<queryWords.size() - 1; i++) {
+	    String word = queryWords.get(i);
 	    query += word+" ";
 	  }
-	  query += queryWords[i];
+	  query += queryWords.get(i);
 	  
 	  return query;
-	  
-	  
-		//forms new query based on which webresults are relevant and other metrics
-		//td-idf document weighting to return document vectors
-		//create query vector
-		//rocchio algorithm to adjust optimal query vector (find new words)
-		//possibly co-occurence to refine new word search
-		//reorder query words
-		//new query 
 	}
 
 

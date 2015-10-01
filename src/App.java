@@ -3,6 +3,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.io.*;
+import java.util.*;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -72,16 +73,27 @@ public class App {
 		String results = getResults(url);
 
 		//The content string is the xml/json output from Bing.
-		System.out.println(results);
+		//System.out.println(results);
 
-    List<String> queryWords = new ArrayList<String>(query.split("\\s+"));
+    List<String> queryWords = new ArrayList<String>();
+    for(String word : query.split("\\s+")) {
+      queryWords.add(word);
+    }
+    
 		WebResultsHandler resultsHandler = new WebResultsHandler(results, precision, transcript, queryWords);
 		boolean precisionMet = false;
 		while((precisionMet = resultsHandler.relevanceFeedback()) == false) {
 			query = resultsHandler.formNewQuery();
 			url = createUrl(query);
 			results = getResults(url);
-			resultsHandler = new WebResultsHandler(results, precision, transcript);
+			queryWords = new ArrayList<String>();
+			System.out.print("New query is: [");
+			for(String word : query.split("\\s+")) {
+        queryWords.add(word);
+        System.out.print(word+", ");
+      }
+      System.out.println("]");
+			resultsHandler = new WebResultsHandler(results, precision, transcript, queryWords);
 		}
 
 		//the webresultshandler should printout the success or failure of each feedback
