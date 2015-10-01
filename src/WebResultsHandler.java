@@ -5,11 +5,13 @@ public class WebResultsHandler {
 	double precision;
 	PrintWriter transcript;
 	DocParser DocResults;
+	List<String> queryWords;
 	
 
-	public WebResultsHandler(String results, double precision, PrintWriter transcript) {
+	public WebResultsHandler(String results, double precision, PrintWriter transcript, List<String> queryWords) {
 		this.precision = precision;
 		this.transcript = transcript;
+		this.queryWords = queryWords;
 		DocResults = new DocParser();
 		DocResults.getEntries(results);
 	}
@@ -60,12 +62,160 @@ public class WebResultsHandler {
 			i++;
 		}
 		
-		return true;
+		if((numRelevant / 10.0) >= this.precision) {
+		  return true;
+		}else if(numRelevant == 0) {
+		  println("0 Relevant documents in results. Ending Program...");
+		  return true;
+		}else {
+		  return false;
+	  }
+	}
+	
+	public HashMap<String, Double> getQueryVector() {
+	  HashMap<String, Double> map = new HashMap<String, Double>();
+	  for(String word : queryWords) {
+	    map.put(word, 1.0);
+	  }
+	  return map;
+	}
+	
+	public HashMap<String, Double> sumVectors(List<HashMap<String, Double>> vectors) {
+	  HashMap<String, Double> weightedVector = new HashMap<String, Double>();
+	  for(HashMap<String, Double> vector: vectors) {
+	  
+	    for(String key : vector.keySet()) {
+	    
+	      Double weight = 0.0;
+	      if(weightedVector.containsKey(key)) {
+	        weight = weightedVector.get(key) + vector.get(key);
+	      }else {
+	        weight = vector.get(key);
+	      }
+	      weightedVector.put(key, weight);
+	      
+	    }
+	  }
+	  
+	  return weightedVector;
+	}
+	
+	public HashMap<String, Double> rocchio(List<DocumentVector> docVectors) {
+	  //Double ALPHA = 1.0;
+	  Double BETA = .85;
+	  Double GAMMA = .15;
+	  int numRelevant = 0, numIrrelevant = 0;
+	  
+	  HashMap<String, Double> queryVector = new HashMap<String, Double>();
+	  
+	  List<HashMap<String, Double>> relevantVectors = new ArrayList<HashMap<String, Double>>;
+	  List<HashMap<String, Double>> irrelevantVectors = new ArrayList<HashMap<String, Double>>;
+	  //find num relevant/irrelevant
+	  for(DocumentVector vector : docVectors) {
+	    if(vector.isRelevant) {
+	      numRelevant++;
+	      relevantVectors.add(vector.vector);
+	    }else {
+	      numIrrelevant++;
+	      irrelevantVectors.add(vector.vector);
+	    }
+	  }
+	  
+	  Double relevantWeight = BETA / numRelevant;
+	  Double irrelevantWeight = GAMMA / numIrrelevant;
+	  
+	  //sum relevant vectors
+	  HashMap<String, Double> summedRelevant = sumVectors(relevantVectors);
+	 
+	  //sum irrelevant vectors
+	  HashMap<String, Double> summedIrrelevant = sumVectors(irrelevantVectors);
+	  
+	  
+	  //weight and subtract irrelevant summed vector from weighted relevant summed vector
+	  
+	  //add relevant summed vector to query vector
+	  for(String key : summedRelevant.keySet()) {
+	    Double weight = 0.0;
+	    if(queryVector.containsKey(key)) {
+	      weight = queryVector.get(key) + (summedRelevant.get(key) * relevantWeight);
+	    }else {
+	      weight = summedRelevant.get(key) * relevantWeight;
+	    }
+	    queryVector.put(key, weight);
+	  }
+	  
+	  //subtract irrelevant summed vector from query vector
+	  for(String key : summedIrrelevant.keySet()) {
+	    Double weight = 0.0;
+	    if(queryVector.containsKey(key)) {
+	      weight = queryVector.get(key) - (summedIrrelevant.get(key) * irrelevantWeight);
+	      if(weight < 0.0) {
+	        weight = 0.0;
+	      }
+	    }else {
+	      weight = 0.0;
+	    }
+	    queryVector.put(key, weight);
+	  }
+	  
+	  return queryVector;
+	}
+	
+	public String[] getTopTwoWords(HashMap<String, Double> vector) {
+	  public class WordWeight {
+	    Double weight;
+	    String word;
+	    public WordWeight(String word, Double weight) {
+	      this.weight = weight;
+	      this.word = word;
+	    }
+	  }
+	  
+	  WordWeight[] topwords = new WordWeight[2];
+	  for(Map.Entry<String, Double> entry : vector.entrySet()) {
+	    if(topwords[0] == null) {
+	      topwords[0] = new WordWeight(entry.key, entry.value);
+	    }else if(topwords[1] == null) {
+	      topwords[1] = new WordWeight(entry.key, entry.value);
+	    }else {
+	      if(entry.value > topwords[1]) {
+	        if(entry.value > topwords[0]) {
+	          topwords[1] = topwords[0];
+	          topwords[0] = new WordWeight(entry.key, entry.value);
+	        }else {
+	          topwords[1] = new WordWeight(entry.key, entry.value);
+	        }
+	      }
+	    }
+	  }
+	  
+	  String[] words = {topwords[0].word, topwords[1].word};
+	  return words;
 	}
 
 	public String formNewQuery() {
+	  //List<DocumentVector> docVectors = ...
+	  HashMap<String, Double> optimizedQueryVector = rocchio(docVectors);
+	  List<String> newWords = new ArrayList<String>(getTopTwoWords(optimizedQueryVector));
+	  queryWords.addAll(newWords);
+	  String query = "";
+	  for(int i = 0; i<queryWords.size - 1; i++) {
+	    String word = queryWords[i];
+	    query += word+" ";
+	  }
+	  query += queryWords[i];
+	  
+	  return query;
+	  
+	  
 		//forms new query based on which webresults are relevant and other metrics
-		return null;
+		//td-idf document weighting to return document vectors
+		//create query vector
+		//rocchio algorithm to adjust optimal query vector (find new words)
+		//possibly co-occurence to refine new word search
+		//reorder query words
+		//new query 
 	}
+
 
 }

@@ -74,7 +74,8 @@ public class App {
 		//The content string is the xml/json output from Bing.
 		System.out.println(results);
 
-		WebResultsHandler resultsHandler = new WebResultsHandler(results, precision, transcript);
+    List<String> queryWords = new ArrayList<String>(query.split("\\s+"));
+		WebResultsHandler resultsHandler = new WebResultsHandler(results, precision, transcript, queryWords);
 		boolean precisionMet = false;
 		while((precisionMet = resultsHandler.relevanceFeedback()) == false) {
 			query = resultsHandler.formNewQuery();
