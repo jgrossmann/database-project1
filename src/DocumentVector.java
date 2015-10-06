@@ -26,7 +26,8 @@ public class DocumentVector {
 		{
 			wordCount++;
 			String term = (String) st.nextElement();
-			if(!queryWords.contains(term.toLowerCase()) && term.matches("[A-Za-z0-9]+")) {
+			term = term.toLowerCase();
+			if(term.matches("[A-Za-z0-9]+")) {
 			  
 			  if(termFreq.containsKey(term))
 			  {

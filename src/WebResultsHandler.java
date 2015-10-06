@@ -8,6 +8,8 @@ public class WebResultsHandler {
 	DocParser DocResults;
 	List<String> queryWords;
 	VectorList docVectors;	
+	static List<String> StopWords = Arrays.asList("a", "an", "and", "are", "as", "at", "be", "by", "for", "from",
+	"has", "he", "in", "is", "it", "its", "of", "on", "that", "the", "to", "was", "were", "will", "with");
 
 	public WebResultsHandler(String results, double precision, PrintWriter transcript, List<String> queryWords) {
 		this.precision = precision;
@@ -162,7 +164,7 @@ public class WebResultsHandler {
 	  return queryVector;
 	}
 	
-	public String[] getTopTwoWords(HashMap<String, Double> vector) {
+	public String[] getTopWords(HashMap<String, Double> vector) {
 	  class WordWeight {
 	    Double weight;
 	    String word;
@@ -171,31 +173,82 @@ public class WebResultsHandler {
 	      this.word = word;
 	    }
 	  }
+	  class WordWeightComparator implements Comparator<WordWeight> {
+        public int compare(WordWeight a, WordWeight b) {
+            if(a.weight > b.weight) {
+                return -1;
+            }else if(a.weight < b.weight) {
+                return 1;
+            }else {
+                return 0;
+            }
+        }
+        
+        public boolean equals(Object a, Object b) {
+            WordWeight A = (WordWeight)a;
+            WordWeight B = (WordWeight)b;
+            if(A.word.equalsIgnoreCase(B.word)) {
+                if(A.weight == B.weight) {
+                    return true;
+                }
+            }
+            return false;
+        }
+      }
+	  List<String> query = new ArrayList<String>();
+	  for(String word : queryWords) {
+	    query.add(word.toLowerCase());
+	  }
+	  queryWords = new ArrayList<String>(query);
+	  List<WordWeight> queryWeight = new ArrayList<WordWeight>();
 	  
-	  WordWeight[] topwords = new WordWeight[2];
+	  Comparator<WordWeight> comp = new WordWeightComparator();
+	  PriorityQueue<WordWeight> queue = new PriorityQueue<WordWeight>(2, comp);
+	  
 	  for(Map.Entry<String, Double> entry : vector.entrySet()) {
+	    if(queryWords.contains(entry.getKey().toLowerCase())) {
+	        queryWeight.add(new WordWeight(entry.getKey().toLowerCase(), entry.getValue()));
+	        //queryWords.remove(entry.getKey().toLowerCase());
+	        continue;
+	    }
+	    if(StopWords.contains(entry.getKey())) {
+	        continue;
+	    }
 	    if(entry.getValue() > .2) {
 	      System.out.println(entry.getKey() + " "+ entry.getValue());
 	    }
-	    if(topwords[0] == null) {
-	      topwords[0] = new WordWeight(entry.getKey(), entry.getValue());
-	    }else if(topwords[1] == null) {
-	      topwords[1] = new WordWeight(entry.getKey(), entry.getValue());
-	    }else {
-	      if(entry.getValue() > topwords[1].weight) {
-	        if(entry.getValue() > topwords[0].weight) {
-	          topwords[1] = topwords[0];
-	          topwords[0] = new WordWeight(entry.getKey(), entry.getValue());
-	        }else {
-	          topwords[1] = new WordWeight(entry.getKey(), entry.getValue());
+	    queue.offer(new WordWeight(entry.getKey(), entry.getValue()));
+	  }
+	  
+	  boolean in;
+	  for(String word : new ArrayList<String>(query)) {
+	    in = false;
+	    for(WordWeight entry : new ArrayList<WordWeight>(queryWeight)) {
+	        if(entry.word.equalsIgnoreCase(word)) {
+	            in = true;
 	        }
-	      }
+	    }
+	    if(!in) {
+	        queryWeight.add(new WordWeight(word.toLowerCase(), 0.0));
 	    }
 	  }
 	  
-	  String[] words = {topwords[0].word, topwords[1].word};
-	  System.out.println(topwords[0].word+" "+topwords[0].weight);
-	  System.out.println(topwords[1].word+" "+topwords[1].weight);
+	  
+	  String[] words = new String[2+queryWeight.size()];
+	  PriorityQueue<WordWeight> newQueue = new PriorityQueue<WordWeight>(2+queryWeight.size(), comp);
+	  newQueue.offer(queue.poll());
+	  newQueue.offer(queue.poll());
+	  
+	  for(WordWeight entry : queryWeight) {
+	    newQueue.offer(entry);
+	  }
+	  
+	  int size = newQueue.size();
+	  for(int i=0; i<size; i++) {
+	    WordWeight entry = newQueue.poll();
+	    words[i] = entry.word;
+	    System.out.println(entry.word+" "+entry.weight);
+	  }
 	  
 	  return words;
 	}
@@ -216,17 +269,16 @@ public class WebResultsHandler {
 		docVectors.getTFIDF();
 
     HashMap<String, Double> optimizedQueryVector = rocchio(docVectors.list);
-	  for(String newWord : getTopTwoWords(optimizedQueryVector)) {
-	    queryWords.add(newWord);
-	  }
+      String[] newQueryWords = new String[2+queryWords.size()];
+	  newQueryWords = getTopWords(optimizedQueryVector);
 	  
 	  String query = "";
 	  int i = 0;
-	  for(; i<queryWords.size() - 1; i++) {
-	    String word = queryWords.get(i);
+	  for(; i<newQueryWords.length - 1; i++) {
+	    String word = newQueryWords[i];
 	    query += word+" ";
 	  }
-	  query += queryWords.get(i);
+	  query += newQueryWords[i];
 	  
 	  return query;
 	}
