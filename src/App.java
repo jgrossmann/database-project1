@@ -65,8 +65,10 @@ public class App {
 	
 	public static void main(String[] args) throws IOException {
     if(args.length < 3) {
-      System.out.println("Include usage");
-      return;
+        System.out.println("Usage: please run ./run.sh <bing account key> <precision> <query>");
+	    System.out.println("<query> is your query, a list of words in single quotes (e.g., ‘Milky Way’)");
+	    System.out.println("<precision> is the target value for precision@10, a real between 0 and 1");
+        return;
     }
         account_key = args[0];
 		double precision = 0.0;
