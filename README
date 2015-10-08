@@ -55,7 +55,7 @@ QUERY MODIFICATION METHOD
 
 Our query modification method first performs tf-idf weighting to create document and query vectors. We then perform the Rocchio algorithm on the document vectors and query vector and choose the two words (excluding query words) with the new top weights as the new query words to add to the query. Then, we reorder the query words in descending order of word weight from the Rocchio algorithm.
 
-
+For each Bing result (document), we create a frequency vector of terms from the description section. Then we have a single document vector list that contains all the documents. In this document vector list, we loop through all the documents and create a document frequency vector which represents the number of documents in which each term appears. We then calculate the inverse document frequency using the formula log(N/DF) for each term. Once we have the IDF vector, we populate the TFIDF vector for each document by multiplying the TF with the IDF for each term.
 
 
 
