@@ -1,4 +1,4 @@
-
+import java.util.*;
 //comparator for wordweights for use with priority queue
 class WordWeightComparator implements Comparator<WordWeight> {
     public int compare(WordWeight a, WordWeight b) {

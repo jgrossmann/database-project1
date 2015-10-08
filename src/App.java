@@ -27,8 +27,8 @@ public class App {
 
 	//account key for bing api
 	//private static final String ACCOUNT_KEY = "BU3X9a6Qbmi7UwCgwo3iuHTfOqbU5PWVjuEul/WzOLk";
-    private String account_key;
-    
+    private static String account_key = null;
+    private static PrintWriter transcript = null;
 
 	//takes a string with spaces as word delimiters and returns a bingURL
 	public static String createUrl(String query) {
@@ -60,6 +60,19 @@ public class App {
 		String content = new String(contentRaw);
 		return content;
 	}
+	
+	//function to print to screen as well as to transcript with newline
+	public static void println(String text) {
+		System.out.println(text);
+		transcript.println(text);
+	}
+
+	
+	//function to print to screen as well as to transcript
+	public static void print(String text) {
+		System.out.print(text);
+		transcript.print(text);
+	}
 
 
 	
@@ -73,7 +86,7 @@ public class App {
         account_key = args[0];
 		double precision = 0.0;
         try {
-          precision = Double.parseDouble(args[0]);
+          precision = Double.parseDouble(args[1]);
         }catch(NumberFormatException e) {
           e.printStackTrace();
           return;
@@ -81,21 +94,28 @@ public class App {
 	
 		File transcriptFile = new File("transcript.txt");
 		if(transcriptFile == null) {
-			System.out.println("can't create a file in the current directory");
+			System.out.println("Can't create a file in the current directory");
 			return;		
 		}
 
-		
-		PrintWriter transcript = new PrintWriter(new FileOutputStream(transcriptFile, false));
-		int i = 1;
+        int i = 2;
 		String query = "";
-		for(;i<args.length-1; i++) {
-		  query += args[i]+" ";
+		for(; i < args.length-1; i++) {
+		    query += args[i]+" ";
 		}
 		query += args[i];
-        System.out.println("First query: "+query);
-    
-		String url = createUrl(query);	
+		
+		transcript = new PrintWriter(new FileOutputStream(transcriptFile, true));
+		
+		String url = createUrl(query);
+		
+		println("======================");
+	    println("Parameters:");
+	    println("Client Key  = "+account_key);
+	    println("Query   = "+query);
+	    println("Precision   = "+precision);	
+		println("URL: "+url);
+		
 		String results = getResults(url);
 
 
@@ -112,18 +132,24 @@ public class App {
 			query = resultsHandler.formNewQuery();
 			url = createUrl(query);
 			results = getResults(url);
+			
 			queryWords = new ArrayList<String>();
-			System.out.print("New query is: [");
 			for(String word : query.split("\\s+")) {
                 queryWords.add(word);
-                System.out.print(word+", ");
             }
-            System.out.println("]");
+            
+            println("Parameters:");
+	        println("Client Key  = "+account_key);
+	        println("Query   = "+queryWords);
+	        println("Precision   = "+precision);	
+		    println("URL: "+url);
+		    
 			resultsHandler = new WebResultsHandler(results, precision, transcript, queryWords);
 		}
 
 		//the webresultshandler should printout the success or failure of each feedback
 		
+	    transcript.println("======================");
 		transcript.close();
 	}
 

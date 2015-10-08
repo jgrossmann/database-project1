@@ -29,6 +29,7 @@ public class WebResultsHandler {
 		}
 		DocResults = new DocParser();
 		DocResults.getEntries(results);
+		println("Total no of results : "+DocResults.entryList.size());
 		if(DocResults.entryList.size() < 10) {
 		    println("There are less than 10 results from Bing. Exiting now...");
 		    transcript.close();
@@ -58,7 +59,8 @@ public class WebResultsHandler {
 		int numRelevant = 0;
 		Scanner in = new Scanner(System.in);
 		int i = 0;
-		
+		println("Bing Search Results:");
+		println("======================");
 		//feedback loop
 		for(WebResult result : DocResults.entryList) {
 			println("Result "+i);
@@ -69,13 +71,15 @@ public class WebResultsHandler {
 			println("]\n");
 			
 			while(true) {
-				print("Relevant (Y/N)?");
+			    System.out.println("Relevant (Y/N)? ");
 				String feedback = in.nextLine();
 				transcript.println(feedback);
 				if(feedback.equalsIgnoreCase("N")) {
+				    transcript.println("Relevant: NO");
 					result.isRelevant(false);
 					break;
 				}else if(feedback.equalsIgnoreCase("Y")) {
+				    transcript.println("Relevant: YES");
 					result.isRelevant(true);
 					numRelevant++;
 					break;
@@ -86,12 +90,25 @@ public class WebResultsHandler {
 			i++;
 		}
 		
-		if((numRelevant / 10.0) >= this.precision) {
+		println("======================");
+		println("FEEDBACK SUMMARY");
+		print("Query");
+		for(String word : queryWords) {
+		    print(" "+word);
+		}
+		println("");
+		
+		double precision = numRelevant / 10.0;
+		println("Precision "+precision);
+		
+		if(precision >= this.precision) {
+		  println("Desired precision reached, done");
 		  return true;
 		}else if(numRelevant == 0) {
 		  println("0 Relevant documents in results. Ending Program...");
 		  return true;
 		}else {
+		  println("Still below the desired precision of 0.9");
 		  return false;
 	  }
 	}
@@ -223,7 +240,7 @@ public class WebResultsHandler {
 	  boolean in;
 	  //if a queryword was not found in the document vectors, 
 	  //add it with a weight of 0
-	  for(String word : new ArrayList<String>(query)) {
+	  for(String word : new ArrayList<String>(queryWords)) {
 	    in = false;
 	    for(WordWeight entry : new ArrayList<WordWeight>(queryWeight)) {
 	        if(entry.word.equalsIgnoreCase(word)) {
@@ -236,7 +253,7 @@ public class WebResultsHandler {
 	  }
 	  
 	  //return the reordered query including new top words
-	  return reorderQuery(query, newQueue.poll(), newQueue.poll());
+	  return reorderQuery(queryWeight, queue.poll(), queue.poll());
 	}
 	
 	
@@ -244,8 +261,10 @@ public class WebResultsHandler {
 	//from the rocchio algorithm. It returns the reordered query ordered
 	//from highest weighted word, to lowest.
 	public String[] reorderQuery(List<WordWeight> query, WordWeight word1, WordWeight word2) {
+	    println("Augmenting by  "+word1.word+" "+word2.word);
         String[] words = new String[2+query.size()];
-        PriorityQueue<WordWeight> newQueue = new PriorityQueue<WordWeight>(2+queryWeight.size(), comp);
+        Comparator<WordWeight> comp = new WordWeightComparator();
+        PriorityQueue<WordWeight> newQueue = new PriorityQueue<WordWeight>(2+query.size(), comp);
         newQueue.offer(word1);
         newQueue.offer(word2);
       
@@ -257,7 +276,6 @@ public class WebResultsHandler {
         for(int i=0; i<size; i++) {
             WordWeight entry = newQueue.poll();
             words[i] = entry.word;
-            System.out.println(entry.word+" "+entry.weight);
         }
         return words;
 	}
@@ -268,6 +286,7 @@ public class WebResultsHandler {
     //recent results. Returns a string of query terms separated
     //by spaces.
 	public String formNewQuery() {
+	    println("Indexing results ... ");
 		List<DocumentVector> ld = new ArrayList<DocumentVector>();
 		for(WebResult wr : DocResults.entryList)
 		{
