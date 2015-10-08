@@ -93,7 +93,7 @@ public class App {
 		  query += args[i]+" ";
 		}
 		query += args[i];
-    System.out.println("First query: "+query);
+        System.out.println("First query: "+query);
     
 		String url = createUrl(query);	
 		String results = getResults(url);

@@ -1,0 +1,30 @@
+John Grossmann: jg3538
+
+BING ACCOUNT KEY: BU3X9a6Qbmi7UwCgwo3iuHTfOqbU5PWVjuEul/WzOLk
+
+(dir) indicates it is a directory, any files nested under a dir are located within that dir.
+List of Files:
+    Makefile
+    README
+    run.sh
+    transcript.txt
+    class (dir)
+    lib (dir)
+        commons-codec-1.10.jar
+    src (dir)
+        App.java
+        DocParser.java
+        DocumentVector.java
+        VectorList.java
+        WebResult.java
+        WebResultsHandler.java
+        WordWeightComparator.java
+        WordWeight.java
+        
+        
+RUNNING THE PROGRAM:
+
+./run.sh <bing account key> <precision> <query>
+<bing account key> is the bing account key to call the bing api
+<query> is your query, a list of words in single quotes (e.g., ‘Milky Way’)
+<precision> is the target value for precision@10, a real between 0 and 1");

@@ -29,6 +29,11 @@ public class WebResultsHandler {
 		}
 		DocResults = new DocParser();
 		DocResults.getEntries(results);
+		if(DocResults.entryList.size() < 10) {
+		    println("There are less than 10 results from Bing. Exiting now...");
+		    transcript.close();
+		    System.exit(0);
+		}
 	}
 
 
