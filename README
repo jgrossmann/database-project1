@@ -1,5 +1,5 @@
 John Grossmann: jg3538
-
+Guan Luo: gl2483
 BING ACCOUNT KEY: BU3X9a6Qbmi7UwCgwo3iuHTfOqbU5PWVjuEul/WzOLk
 
 (dir) indicates it is a directory, any files nested under a dir are located within that dir.
@@ -34,6 +34,27 @@ make
 <bing account key> is the bing account key to call the bing api
 <query> is your query, a list of words in single quotes (e.g., ‘Milky Way’)
 <precision> is the target value for precision@10, a real between 0 and 1");
+
+
+
+
+
+DESIGN
+
+The main class of this program: App, handles the command line argument parsing, as well as formatting the query to bing query format, and sending and receiving the query and query results to and from bing. The main function has a loop which iterates until the precision@10 is met, less than 10 results are returned from Bing, or the precision@10 for an iteration is 0. The main function creates a WebResultsHandler object for each loop iteration to handle parsing of results, relevance feedback, and query expansion. 
+
+
+When a WebResultsHandler object is created, it parses the raw web results into WebResult objects inside a created DocParser object (see next paragraph). If there is at least 10 WebResult objects, the main function will call the relevanceFeeback method on the WebResultHandler which takes user input as feedback on each of the 10 WebResults to determine relevance. If the precision@10 is met after the relevance feedback, the program ends. Otherwise, the main function calls the formNewQuery method on the WebResultsHandler object. The formNewQuery method first creates a list of DocumentVector objects through the creation of DocumentVector objects from each WebResult, then creating one VectorList object which holds all of the DocumentVectors, and performs tf-idf weighting on all of the words. A list of the DocumentVectors is then sent into the rocchio function which performs the rocchio algorithm on all of the words in the document vectors. After rocchio, the function getTopWords is called which gets the top two words from the rocchio algorithm (excluding the query terms), then reorders the new query so that the first query word has the highest weight resulting from the rocchio algorithm, and the rest of the words are in decreasing order. The formNewQuery function then returns a string of space separated query terms back to the main function. This string is then turned into a new bing url, new web results are received, and the feedback loop repeats.
+
+DocParser class parses the xml result from the Bing API and stores them as a list of WebResult entries. Once we have the WebResults,a DocumentVector is created for each WebResult which contains the term frequency vector and an initially empty TFIDF vector. VectorList class contains a document frequency vector which is used to calculate the TFIDF vector for each document.
+
+
+
+
+QUERY MODIFICATION METHOD
+
+Our query modification method first performs tf-idf weighting to create document and query vectors. We then perform the Rocchio algorithm on the document vectors and query vector and choose the two words (excluding query words) with the new top weights as the new query words to add to the query. Then, we reorder the query words in descending order of word weight from the Rocchio algorithm.
+
 
 
 
