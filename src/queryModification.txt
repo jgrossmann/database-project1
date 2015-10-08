@@ -1,0 +1,1 @@
+tf-idf weighting, Rocchio algorithm top two words (excluding query words) coupled with query word reordering in descending order of rocchio word weight.
