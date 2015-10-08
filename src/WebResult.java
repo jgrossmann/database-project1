@@ -1,5 +1,8 @@
 
-
+/*
+This class holds each individual web result from bing after
+parsing the returned query results
+*/
 public class WebResult {
 	String title;
 	String description;
