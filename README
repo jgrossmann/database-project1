@@ -55,7 +55,39 @@ QUERY MODIFICATION METHOD
 
 Our query modification method first performs tf-idf weighting to create document and query vectors. We then perform the Rocchio algorithm on the document vectors and query vector and choose the two words (excluding query words) with the new top weights as the new query words to add to the query. Then, we reorder the query words in descending order of word weight from the Rocchio algorithm.
 
-For each Bing result (document), we create a frequency vector of terms from the description section. Then we have a single document vector list that contains all the documents. In this document vector list, we loop through all the documents and create a document frequency vector which represents the number of documents in which each term appears. We then calculate the inverse document frequency using the formula log(N/DF) for each term. Once we have the IDF vector, we populate the TFIDF vector for each document by multiplying the TF with the IDF for each term.
+TF-IDF Weighting:
+We use the TF-IDF Weighting scheme as shown in REF 1.
+For each Bing result (document), we create a frequency vector of terms from the description section. Then we have a single document vector list that contains all the documents. In this document vector list, we loop through all the documents and create a document frequency vector which represents the number of documents in which each term appears. We then calculate the inverse document frequency using the formula log(N/DF) for each term. Once we have the IDF vector, we populate the TFIDF vector for each document by multiplying the TF with the IDF for each term. We have a list of stop words that we don't include in the document vectors. We got that list from REF 2. 
+
+Rocchio Algorithm:
+We use the Rocchio alorithm as shown in REF 1 slightly modified.
+First we create the weighting values for the relevant and non-relevant document vectors. The relevant weght is:
+
+BETA / (number of relevant documents)
+
+where BETA = .75. The non-relevant document weight is:
+
+GAMMA / (number of non-relevant documents)
+
+where GAMMA = .25. We do not use an ALPHA term to multiply the original query vector with, because we throw out the previous query word weights. Even though we throw out their weights, we automatically keep the previous query terms in every subsequent query. Then, we sum the relevant docuement vectors, and the non-relevant document vectors to create two vectors: a relevant document word vector and a non-relevant document word vector. Then, we subtract the non-relevant document word vector from the relevant document word vector. The output is a single vector of words with adjusted word-weights. 
+
+
+Getting New Query Words:
+We take the word vector from the Rocchio algorithm and put all of the word-weight pairs into a Priority Queue. We take the top two words from the Priority Queue as the new query words. 
+
+
+Query Reordering:
+We take the two new word-weight pairs, and put them into a Priority Queue along with the new word-weight pairs of the previous query words. The new query word order will be the order in which the words come out of the priority queue (descending order). 
+
+
+
+
+
+REFERENCES:
+
+REF 1: Christopher D. Manning, Prabhakar Raghavan and Hinrich Schütze, Introduction to Information Retrieval, Cambridge University Press. 2008. http://nlp.stanford.edu/IR-book/.
+
+REF 2: Dropping Common Terms: Stop Words, http://nlp.stanford.edu/IR-book/html/htmledition/dropping-common-terms-stop-words-1.html, Figure 2.5.
 
 
 
