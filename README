@@ -24,8 +24,17 @@ List of Files:
         
         
 RUNNING THE PROGRAM:
+To run the program, it must be able to create a file (transcript.txt) in the directory it is run from!
 
+Type the following commands:
+make clean
+make
 ./run.sh <bing account key> <precision> <query>
+
 <bing account key> is the bing account key to call the bing api
 <query> is your query, a list of words in single quotes (e.g., ‘Milky Way’)
 <precision> is the target value for precision@10, a real between 0 and 1");
+
+
+
+
